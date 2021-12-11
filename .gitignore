@@ -1,0 +1,6 @@
+.env
+node_modules
+angular-jwt-todo
+test.js
+files/*
+!files/.gitkeep
