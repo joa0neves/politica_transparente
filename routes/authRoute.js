@@ -4,6 +4,9 @@ const router = express.Router();
 var SHA256 = require("crypto-js/sha256");
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
+const User = require("../models/user");
+const Politico = require("../models/politico");
+const Credenciado = require("../models/credenciado");
 
 
 router.post('/auth', async (req, res) => {
