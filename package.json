@@ -19,7 +19,8 @@
 		"express-jwt": "^6.0.0",
 		"jsonwebtoken": "^8.5.1",
 		"lodash": "^4.17.20",
-		"mongoose": "^5.11.13"
+		"mongoose": "^5.11.13",
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"dotenv": "^8.2.0",

@@ -1,10 +1,9 @@
 const User = require("../models/user");
-const Politico = require("../models/politico");
-const Credenciado = require("../models/credenciado");
 const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
+const SHA256 = require("crypto-js/sha256");
+
 
 router.get('/users', async (req, res) => {
     try {
@@ -15,53 +14,25 @@ router.get('/users', async (req, res) => {
     }
   })
 
-  router.get('/politicos', async (req, res) => {
-    try {
-      const politicos = await Politico.find()
-      res.json(politicos)
-    } catch (err) {
-      res.status(500).json({ message: err.message })
-    }
-  })
+router.get('/users/:id', getUser, (req, res) => {
+  res.json(res.user)
+})
 
-  router.get('/credenciados', async (req, res) => {
-    try {
-      const credenciados = await Credenciado.find()
-      res.json(credenciados)
-    } catch (err) {
-      res.status(500).json({ message: err.message })
-    }
-  })
-
-  router.get('/users/:id', getUser, (req, res) => {
-    res.json(res.user)
-  })
-
-  router.get('/politicos/:id', getPolitico, (req, res) => {
-    res.json(res.politico)
-  })
-
-  router.get('/credenciados/:id', getCredenciado, (req, res) => {
-    res.json(res.credenciado)
-  })
-
-
-
-
-  async function getPolitico(req, res, next) {
-    let politico
-    try {
-        politico = await Politico.findById(req.params.id)
-      if (politico == null) {
-        return res.status(404).json({ message: 'Cannot find Politico' })
-      }
-    } catch (err) {
-      return res.status(500).json({ message: err.message })
-    }
-  
-    res.politico = politico
-    next()
+router.post('/users/new', async (req, res) => {
+  const user = new User({
+    _id:uuidv4(),
+    nome: req.body.nome,
+    email: req.body.email,
+    password: SHA256(req.body.password),
+    tipo: req.body.tipo
+  });
+  try {
+    const newUser = await user.save()
+    res.status(201).json(newUser)
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
+})
 
   async function getUser(req, res, next) {
     let user
@@ -78,17 +49,19 @@ router.get('/users', async (req, res) => {
     next()
   }
 
-  async function getCredenciado(req, res, next) {
-    let credenciado
+  async function getUserByName(req, res, next) {
+    let user
     try {
-        credenciado = await Credenciado.findById(req.params.id)
-      if (credenciado == null) {
-        return res.status(404).json({ message: 'Cannot find Credenciado' })
+      user = await User.find({nome: req.params.id}).exec();
+      if (user == null) {
+        return res.status(404).json({ message: 'Cannot find User' })
       }
     } catch (err) {
       return res.status(500).json({ message: err.message })
     }
   
-    res.credenciado = credenciado
+    res.user = user
     next()
   }
+
+  module.exports = router;
