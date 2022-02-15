@@ -16,6 +16,10 @@ router.get('/list', async (req, res) => {
     }
   })
 
+router.get('/list/:post_id', GetPostByPostId, (req, res) => {
+  res.json(res.post)
+})
+
 router.post('/new', async (req, res) => {
     const voto = new Voto({
         _id:uuidv4(),
@@ -38,5 +42,20 @@ router.post('/new', async (req, res) => {
         res.status(500).json({ message: err.message })
       }
   })
+
+  async function getPostByPostId(req, res, next) {
+    let post
+    try {
+      post = await Post.find({post_id: req.params.post_id }).exec();
+      if (post == null) {
+        return res.status(404).json({ message: 'Cannot find Post' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.post = post
+    next()
+  }
 
   module.exports = router;

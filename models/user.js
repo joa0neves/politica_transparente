@@ -19,11 +19,16 @@ const userSchema = new mongoose.Schema({
   },
   tipo: {
     type: String,
+    default: "user",
     required: true
   },
   afiliacao: {
     type: String,
     required: true
+  },
+  searchTags: {
+    type: String,
+    required: false
   },
   bio: {
     type: String,

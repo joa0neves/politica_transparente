@@ -18,6 +18,10 @@ router.get('/list', async (req, res) => {
     res.json(res.user)
   })
 
+  router.get('/search/:tag', search, (req, res) => {
+    res.json(res.users)
+  })
+
   router.get('/list/afiliacao/:afiliacao', getUserByAfiliacao, (req, res) => {
     res.json(res.user)
   })
@@ -33,7 +37,8 @@ router.post('/new', async (req, res) => {
     email: req.body.email,
     password: SHA256(req.body.password),
     tipo: req.body.tipo,
-    afiliacao: req.body.afiliacao
+    afiliacao: req.body.afiliacao,
+    searchTags : ''+req.body.nome+' '+req.body.afiliacao
   });
   try {
     const newUser = await user.save()
@@ -121,6 +126,22 @@ router.patch('/:id', getUser, async (req, res) => {
     }
   
     res.user = user
+    next()
+  }
+
+  async function search(req, res, next) {
+    let users
+    let searchExp=req.params.tag.toLowerCase().split(" ").join('.*')
+    try {
+      users = await User.find({searchTags: { $regex: '.*' +  searchExp + '.*', $options: "si"} }).exec();
+      if (users == null) {
+        return res.status(404).json({ message: 'Cannot find any Users' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.users = users
     next()
   }
 

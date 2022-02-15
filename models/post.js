@@ -24,6 +24,15 @@ const postSchema = new mongoose.Schema({
   empresas: {
     type: [String],
     required: true
+  },
+  searchTags: {
+    type: String,
+    required: false
+  },
+  numeroVotos: {
+    type: Number,
+    default: 0,
+    required: false
   }
 })
 
