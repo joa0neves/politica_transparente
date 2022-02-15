@@ -21,8 +21,8 @@ const postSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  empresas: {
-    type: [String],
+  empresa: {
+    type: String,
     required: true
   },
   searchTags: {
@@ -32,6 +32,11 @@ const postSchema = new mongoose.Schema({
   numeroVotos: {
     type: Number,
     default: 0,
+    required: false
+  },
+  votos: {
+    type: [String],
+    default: [],
     required: false
   }
 })

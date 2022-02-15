@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   afiliacao: {
     type: String,
-    required: true
+    required: false
   },
   searchTags: {
     type: String,

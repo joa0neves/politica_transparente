@@ -18,7 +18,7 @@ router.get('/list', async (req, res) => {
     res.json(res.post)
   })
 
-  router.get('/list/author_id/:titulo', getPostByTitulo, (req, res) => {
+  router.get('/list/author_id/:titulo', getPostByAuthorId, (req, res) => {
     res.json(res.post)
   })
 
@@ -33,7 +33,8 @@ router.get('/list', async (req, res) => {
       titulo: req.body.titulo,
       descricao: req.body.descricao,
       envolvidos: req.body.envolvidos,
-      searchTags: ''+req.body.titulo+' '+req.body.descricao
+      empresa: req.body.empresa,
+      searchTags: ''+req.body.titulo+' '+req.body.descricao+' '+req.body.empresa
     });
     try {
       const newPost = await post.save()
@@ -62,21 +63,6 @@ router.get('/list', async (req, res) => {
     let post
     try {
       post = await Post.find({author_id: req.params.author_id}).exec();
-      if (post == null) {
-        return res.status(404).json({ message: 'Cannot find Post' })
-      }
-    } catch (err) {
-      return res.status(500).json({ message: err.message })
-    }
-  
-    res.post = post
-    next()
-  }
-
-  async function getPostByTitulo(req, res, next) {
-    let post
-    try {
-      post = await Post.find({titulo: { $regex: '.*' +  req.params.titulo + '.*' }}).exec();
       if (post == null) {
         return res.status(404).json({ message: 'Cannot find Post' })
       }

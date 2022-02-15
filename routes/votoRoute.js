@@ -16,7 +16,7 @@ router.get('/list', async (req, res) => {
     }
   })
 
-router.get('/list/:post_id', GetPostByPostId, (req, res) => {
+router.get('/list/:post_id', getPostByPostId, (req, res) => {
   res.json(res.post)
 })
 

@@ -48,6 +48,42 @@ router.post('/new', async (req, res) => {
   }
 })
 
+router.post('/new/jornalista', async (req, res) => {
+  const user = new User({
+    _id:uuidv4(),
+    nome: req.body.nome,
+    email: req.body.email,
+    password: SHA256(req.body.password),
+    tipo: req.body.tipo,
+    afiliacao: req.body.afiliacao,
+    searchTags : ''+req.body.nome+' '+req.body.afiliacao
+  });
+  try {
+    const newUser = await user.save()
+    res.status(201).json(newUser)
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+})
+
+router.post('/new/politico', async (req, res) => {
+  const user = new User({
+    _id:uuidv4(),
+    nome: req.body.nome,
+    email: req.body.email,
+    password: SHA256(req.body.password),
+    tipo: req.body.tipo,
+    afiliacao: req.body.afiliacao,
+    searchTags : ''+req.body.nome+' '+req.body.afiliacao
+  });
+  try {
+    const newUser = await user.save()
+    res.status(201).json(newUser)
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+})
+
 router.delete('/:id', getUser, async (req, res) => {
   try {
     await res.user.remove()
