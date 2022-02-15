@@ -20,6 +20,10 @@ const postSchema = new mongoose.Schema({
   envolvidos: {
     type: [String],
     required: true
+  },
+  empresas: {
+    type: [String],
+    required: true
   }
 })
 

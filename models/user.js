@@ -20,7 +20,17 @@ const userSchema = new mongoose.Schema({
   tipo: {
     type: String,
     required: true
+  },
+  afiliacao: {
+    type: String,
+    required: true
+  },
+  bio: {
+    type: String,
+    default: "Vazio",
+    required: false
   }
+
 })
 
 module.exports = mongoose.model('User', userSchema);

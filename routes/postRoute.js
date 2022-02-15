@@ -1,7 +1,7 @@
 const Post = require("../models/post");
 const { v4: uuidv4 } = require('uuid');
 
-router.get('/posts', async (req, res) => {
+router.get('/list', async (req, res) => {
     try {
       const posts = await Post.find()
       res.json(posts)
@@ -10,11 +10,15 @@ router.get('/posts', async (req, res) => {
     }
   })
 
-  router.get('/posts/:id', getPost, (req, res) => {
+  router.get('/list/:titulo', getPostByTitulo, (req, res) => {
     res.json(res.post)
   })
 
-  router.post('/posts/new', async (req, res) => {
+  router.get('/:id', getPost, (req, res) => {
+    res.json(res.post)
+  })
+
+  router.post('/new', async (req, res) => {
     const post = new Post({
       _id:uuidv4(),
       author_id: req.body.author_id,
@@ -34,6 +38,21 @@ router.get('/posts', async (req, res) => {
     let post
     try {
         post = await Post.findById(req.params.id)
+      if (post == null) {
+        return res.status(404).json({ message: 'Cannot find Post' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.post = post
+    next()
+  }
+
+  async function getPostByTitulo(req, res, next) {
+    let post
+    try {
+      post = await Post.find({titulo: { $regex: '.*' +  req.params.titulo + '.*' }}).exec();
       if (post == null) {
         return res.status(404).json({ message: 'Cannot find Post' })
       }

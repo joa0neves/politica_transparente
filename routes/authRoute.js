@@ -8,14 +8,14 @@ const User = require("../models/user");
 
 
 
-router.post('/auth', async (req, res) => {
+router.post('/', async (req, res) => {
     const email = req.body.email;
-      const password = req.body.password;
+    const password = req.body.password;
           
-      if (_.isNil(email) && _.isNil(password)) {
-          res.status(400).json({ message: "Username and password must be supplied!" })
-          return;
-      }
+    if (_.isNil(email) && _.isNil(password)) {
+      res.status(400).json({ message: "Username and password must be supplied!" })
+      return;
+    }
     User.findOne({ email }, function (err, user) {
       if (err) next();
       if (_.isNull(user)) {
