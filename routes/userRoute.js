@@ -31,14 +31,20 @@ router.get('/:id', getUser, (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
+  let temp;
+  try {
+    temp = await User.findOne({email : req.body.email}).exec();
+    if (temp != null) {
+      return res.status(404).json({ message: 'Email Taken' })
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
   const user = new User({
     _id:uuidv4(),
     nome: req.body.nome,
     email: req.body.email,
-    password: SHA256(req.body.password),
-    tipo: req.body.tipo,
-    afiliacao: req.body.afiliacao,
-    searchTags : ''+req.body.nome+' '+req.body.afiliacao
+    password: SHA256(req.body.password)
   });
   try {
     const newUser = await user.save()
@@ -49,12 +55,21 @@ router.post('/new', async (req, res) => {
 })
 
 router.post('/new/jornalista', async (req, res) => {
+  let temp;
+  try {
+    temp = await User.findOne({email : req.body.email}).exec();
+    if (temp != null) {
+      return res.status(404).json({ message: 'Email Taken' })
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
   const user = new User({
     _id:uuidv4(),
     nome: req.body.nome,
     email: req.body.email,
     password: SHA256(req.body.password),
-    tipo: req.body.tipo,
+    tipo: "jornalista",
     afiliacao: req.body.afiliacao,
     searchTags : ''+req.body.nome+' '+req.body.afiliacao
   });
@@ -67,12 +82,21 @@ router.post('/new/jornalista', async (req, res) => {
 })
 
 router.post('/new/politico', async (req, res) => {
+  let temp;
+  try {
+    temp = await User.findOne({email : req.body.email}).exec();
+    if (temp != null) {
+      return res.status(404).json({ message: 'Email Taken' })
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
   const user = new User({
     _id:uuidv4(),
     nome: req.body.nome,
     email: req.body.email,
     password: SHA256(req.body.password),
-    tipo: req.body.tipo,
+    tipo: "politico",
     afiliacao: req.body.afiliacao,
     searchTags : ''+req.body.nome+' '+req.body.afiliacao
   });

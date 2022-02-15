@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         res.status(404).json({ message: "User not found" });
         return;
       } else {
-        if (SHA256(password),user.password) {
+        if (SHA256(password)==user.password) {
           const token = jwt.sign({
             _id: user._id,
             email: user.email,
