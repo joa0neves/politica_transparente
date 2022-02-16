@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const Voto = require("../models/voto");
+const Post = require("../models/post")
 
 router.get('/list', async (req, res) => {
     try {
@@ -34,7 +35,7 @@ router.post('/new', async (req, res) => {
       }
   })
 
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:id', getVoto , async (req, res) => {
     try {
         await res.voto.remove()
         res.json({ message: 'Deleted Voto' })
@@ -42,6 +43,21 @@ router.post('/new', async (req, res) => {
         res.status(500).json({ message: err.message })
       }
   })
+
+  async function getVoto(req, res, next) {
+    let voto
+    try {
+      voto = await Voto.findById(req.params.id)
+      if (voto == null) {
+        return res.status(404).json({ message: 'Cannot find voto' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.voto = voto
+    next()
+  }
 
   async function getPostByPostId(req, res, next) {
     let post

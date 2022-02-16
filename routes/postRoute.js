@@ -26,13 +26,21 @@ router.get('/list', async (req, res) => {
     res.json(res.post)
   })
 
+  router.delete('/:id', getPost, async (req, res) => {
+    try {
+        await res.post.remove()
+        res.json({ message: 'Deleted Post' })
+      } catch (err) {
+        res.status(500).json({ message: err.message })
+      }
+  })
+
   router.post('/new', async (req, res) => {
     const post = new Post({
       _id:uuidv4(),
       author_id: req.body.author_id,
       titulo: req.body.titulo,
       descricao: req.body.descricao,
-      envolvidos: req.body.envolvidos,
       empresa: req.body.empresa,
       searchTags: ''+req.body.titulo+' '+req.body.descricao+' '+req.body.empresa
     });

@@ -19,7 +19,7 @@ const postSchema = new mongoose.Schema({
   },
   envolvidos: {
     type: [String],
-    required: true
+    required: false
   },
   empresa: {
     type: String,
