@@ -15,7 +15,7 @@ router.get('/list', async (req, res) => {
   })
 
   router.get('/list/:nome', getUserByName, (req, res) => {
-    res.json(res.user)
+    res.status(200).send(res.user)
   })
 
   router.get('/search/:tag', search, (req, res) => {
@@ -26,7 +26,7 @@ router.get('/list', async (req, res) => {
     res.json(res.user)
   })
 
-router.get('/:id', getUser, (req, res) => {
+router.get('/:id', getUser2, (req, res) => {
   res.json(res.user)
 })
 
@@ -45,6 +45,31 @@ router.post('/new', async (req, res) => {
     nome: req.body.nome,
     email: req.body.email,
     password: SHA256(req.body.password)
+  });
+  try {
+    const newUser = await user.save()
+    res.status(201).json(newUser)
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+})
+
+router.post('/new/admin', async (req, res) => {
+  let temp;
+  try {
+    temp = await User.findOne({email : req.body.email}).exec();
+    if (temp != null) {
+      return res.status(404).json({ message: 'Email Taken' })
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
+  const user = new User({
+    _id:uuidv4(),
+    nome: req.body.nome,
+    email: req.body.email,
+    password: SHA256(req.body.password),
+    tipo : "admin"
   });
   try {
     const newUser = await user.save()
@@ -148,6 +173,21 @@ router.patch('/:id', getUser, async (req, res) => {
     let user
     try {
       user = await User.findById(req.params.id)
+      if (user == null) {
+        return res.status(404).json({ message: 'Cannot find User' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.user = user
+    next()
+  }
+
+  async function getUser2(req, res, next) {
+    let user
+    try {
+      user = await User.findById(req.params.id).select('nome tipo afiliacao bio')
       if (user == null) {
         return res.status(404).json({ message: 'Cannot find User' })
       }

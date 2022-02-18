@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  author_nome: {
+    type: String,
+    required: true
+  },
   titulo: {
     type: String,
     required: true

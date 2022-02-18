@@ -15,7 +15,7 @@ const authRoute = require('./routes/authRoute');
 app.use('/auth', authRoute);
 const userRoute = require('./routes/userRoute');
 app.use('/User', userRoute);
-const postRoute = require('./routes/authRoute');
+const postRoute = require('./routes/postRoute');
 app.use('/Post', postRoute);
 const empresaRoute = require('./routes/empresaRoute');
 app.use('/Empresa', empresaRoute);

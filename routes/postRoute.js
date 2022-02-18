@@ -1,5 +1,7 @@
 const Post = require("../models/post");
 const { v4: uuidv4 } = require('uuid');
+const express = require('express');
+const router = express.Router();
 
 router.get('/list', async (req, res) => {
     try {
@@ -39,10 +41,11 @@ router.get('/list', async (req, res) => {
     const post = new Post({
       _id:uuidv4(),
       author_id: req.body.author_id,
+      author_nome: req.body.author_nome,
       titulo: req.body.titulo,
       descricao: req.body.descricao,
       empresa: req.body.empresa,
-      searchTags: ''+req.body.titulo+' '+req.body.descricao+' '+req.body.empresa
+      searchTags: ''+req.body.titulo+' '+req.body.empresa+' '+req.body.descricao
     });
     try {
       const newPost = await post.save()

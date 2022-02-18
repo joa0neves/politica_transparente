@@ -21,6 +21,14 @@ router.get('/list/:post_id', getPostByPostId, (req, res) => {
   res.json(res.post)
 })
 
+router.get('/count/:post_id', countVotes, (req, res) => {
+  res.json({voteCount : res.voteCount})
+})
+
+router.post('/voted', checkVote, (req, res) => {
+  res.json({voted : res.voted})
+})
+
 router.post('/new', async (req, res) => {
     const voto = new Voto({
         _id:uuidv4(),
@@ -35,7 +43,7 @@ router.post('/new', async (req, res) => {
       }
   })
 
-  router.delete('/:id', getVoto , async (req, res) => {
+  router.delete('/remove/:post_id/:user_id', getVoto2 , async (req, res) => {
     try {
         await res.voto.remove()
         res.json({ message: 'Deleted Voto' })
@@ -59,6 +67,21 @@ router.post('/new', async (req, res) => {
     next()
   }
 
+  async function getVoto2(req, res, next) {
+    let voto
+    try {
+      voto = await Voto.findOne({post_id: req.param.post_id, user_id:req.param.user_id });
+      if (voto == null) {
+        return res.status(404).json({ message: 'Cannot find voto' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.voto = voto
+    next()
+  }
+
   async function getPostByPostId(req, res, next) {
     let post
     try {
@@ -71,6 +94,33 @@ router.post('/new', async (req, res) => {
     }
   
     res.post = post
+    next()
+  }
+
+  async function countVotes(req, res, next) {
+    let voteCount
+    try {
+      voteCount = await Voto.find({post_id: req.params.post_id}).countDocuments().exec();
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.voteCount = voteCount
+    next()
+  }
+
+  async function checkVote(req, res, next) {
+    let voted = true
+    try {
+      voted = await Voto.findOne({post_id: req.body.post_id, user_id:req.body.user_id }).exec();
+      if (voted == null){
+        voted = false
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.voted = voted
     next()
   }
 

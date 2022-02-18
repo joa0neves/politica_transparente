@@ -26,7 +26,8 @@ router.post('/', async (req, res) => {
           const token = jwt.sign({
             _id: user._id,
             email: user.email,
-            type: user.type
+            nome: user.nome,
+            tipo: user.tipo
           }, `${process.env.SECRET}`, { expiresIn: '1h' });
           res.status(200).send({ auth: true, token: token });
         } else {
@@ -36,6 +37,16 @@ router.post('/', async (req, res) => {
       }
     });
   
+  })
+
+  router.post('/type', async (req, res) => {
+    temp=jwt.decode(req.body.token)
+    res.status(200).send({ tipo: temp.tipo})
+  })
+
+  router.post('/id', async (req, res) => {
+    temp=jwt.decode(req.body.token)
+    res.status(200).send({ _id: temp._id , nome: temp.nome})
   })
 
   module.exports = router;
