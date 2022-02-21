@@ -25,7 +25,7 @@ router.get('/list', async (req, res) => {
   })
 
   router.get('/:id', getPost, (req, res) => {
-    res.json(res.post)
+    res.send(res.post)
   })
 
   router.delete('/:id', getPost, async (req, res) => {

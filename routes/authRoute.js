@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
             email: user.email,
             nome: user.nome,
             tipo: user.tipo
-          }, `${process.env.SECRET}`, { expiresIn: '1h' });
+          }, `${process.env.SECRET}`);
           res.status(200).send({ auth: true, token: token });
         } else {
           res.status(400).json({ status: "error", message: "Incorrect email/password" });
@@ -45,8 +45,8 @@ router.post('/', async (req, res) => {
   })
 
   router.post('/id', async (req, res) => {
-    temp=jwt.decode(req.body.token)
-    res.status(200).send({ _id: temp._id , nome: temp.nome})
+    token=jwt.decode(req.body.token)
+    res.status(200).send({ _id: token._id , nome: token.nome, tipo: token.tipo})
   })
 
   module.exports = router;

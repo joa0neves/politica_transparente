@@ -100,7 +100,7 @@ router.post('/new', async (req, res) => {
   async function countVotes(req, res, next) {
     let voteCount
     try {
-      voteCount = await Voto.find({post_id: req.params.post_id}).countDocuments().exec();
+      voteCount = await Voto.find({post_id: req.params.post_id}).countDocuments();
     } catch (err) {
       return res.status(500).json({ message: err.message })
     }

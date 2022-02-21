@@ -96,7 +96,7 @@ router.post('/new/jornalista', async (req, res) => {
     password: SHA256(req.body.password),
     tipo: "jornalista",
     afiliacao: req.body.afiliacao,
-    searchTags : ''+req.body.nome+' '+req.body.afiliacao
+    searchTags : ''+req.body.nome+' '+req.body.afiliacao+' '+"jornalista"
   });
   try {
     const newUser = await user.save()
@@ -123,7 +123,7 @@ router.post('/new/politico', async (req, res) => {
     password: SHA256(req.body.password),
     tipo: "politico",
     afiliacao: req.body.afiliacao,
-    searchTags : ''+req.body.nome+' '+req.body.afiliacao
+    searchTags : ''+req.body.nome+' '+req.body.afiliacao+' '+"politico"
   });
   try {
     const newUser = await user.save()
@@ -169,6 +169,10 @@ router.patch('/:id', getUser, async (req, res) => {
   }
 })
 
+  router.get('/politicos/list', getPoliticos,async (req, res) => {
+    res.status(200).send(res.politicos)
+  })
+
   async function getUser(req, res, next) {
     let user
     try {
@@ -181,6 +185,21 @@ router.patch('/:id', getUser, async (req, res) => {
     }
   
     res.user = user
+    next()
+  }
+
+  async function getPoliticos(req, res, next) {
+    let politicos
+    try {
+      politicos = await User.find({tipo: "politico"}).select('nome afiliacao')
+      if (politicos == null) {
+        return res.status(404).json({ message: 'Cannot find Politicos' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.politicos = politicos
     next()
   }
 
@@ -233,7 +252,7 @@ router.patch('/:id', getUser, async (req, res) => {
     let users
     let searchExp=req.params.tag.toLowerCase().split(" ").join('.*')
     try {
-      users = await User.find({searchTags: { $regex: '.*' +  searchExp + '.*', $options: "si"} }).exec();
+      users = await User.find({searchTags: { $regex: '.*' +  searchExp + '.*', $options: "i"} }).exec();
       if (users == null) {
         return res.status(404).json({ message: 'Cannot find any Users' })
       }

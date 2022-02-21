@@ -22,7 +22,7 @@ const postSchema = new mongoose.Schema({
     required: true
   },
   envolvidos: {
-    type: [String],
+    type: [{_id:String , nome : String, afiliacao : String}],
     required: false
   },
   empresa: {
