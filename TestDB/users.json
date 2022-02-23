@@ -1,0 +1,135 @@
+[{
+  "_id": "f2c76c4e-377b-4906-96a4-d5e778c29f88",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "vasco",
+  "email": "vasco@teste.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "38113a32-a6be-4226-9d45-f76ccaeca337",
+  "tipo": "admin",
+  "bio": "Vazio",
+  "nome": "joao",
+  "email": "joao@teste.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "db28e8f8-e239-4f43-98d8-5832fe7b3f9c",
+  "tipo": "politico",
+  "bio": "Vazio",
+  "nome": "politico",
+  "email": "politico@gmail.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "PSD",
+  "searchTags": "politico PSD",
+  "__v": 0
+},{
+  "_id": "ff3a54f3-bb70-46e2-8de7-15a224c85a79",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "Joao Neves",
+  "email": "joneves@ipvc.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "92089ff9-d93a-4be8-9e4f-e7e85c1c05e7",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "Joao Costa Neves",
+  "email": "teste@teste.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "215657c9-8260-45e7-968e-4e039781a090",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "jornalista",
+  "email": "jornalista@teste.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "22acb59d-133c-438c-9132-8586d2927f52",
+  "tipo": "politico",
+  "bio": "Vazio",
+  "nome": "Antonio Costa",
+  "email": "acosta@gmail.com",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "PS",
+  "searchTags": "Antonio Costa PS politico",
+  "__v": 0
+},{
+  "_id": "8b583bb0-0f23-4568-acda-e08542341e97",
+  "tipo": "politico",
+  "bio": "Vazio",
+  "nome": "Rui Rio",
+  "email": "rrio@gmail.com",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "PSD",
+  "searchTags": "Rui Rio PSD politico",
+  "__v": 0
+},{
+  "_id": "1f89351c-97c9-45e3-b811-b7be9f2af1f1",
+  "tipo": "politico",
+  "bio": "Vazio",
+  "nome": "Catarina Martins",
+  "email": "cmartins@gmail.com",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "BE",
+  "searchTags": "Catarina Martins BE politico",
+  "__v": 0
+},{
+  "_id": "34649bcf-89ad-4d68-a8f0-98e838eb9ecf",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "joao neves",
+  "email": "joao2@teste.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "47270950-7393-46eb-9a39-aa5e468d4ebe",
+  "tipo": "jornalista",
+  "bio": "Vazio",
+  "nome": "teste testando",
+  "email": "cidadao@gamil.com",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "PSD",
+  "searchTags": "teste testando PSD jornalista",
+  "__v": 0
+},{
+  "_id": "cc53d950-d733-493e-b6b5-7d8267605a63",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "Joao Neves",
+  "email": "neves@ipvc.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "93c51fcd-1945-4718-80e1-34327add0807",
+  "tipo": "jornalista",
+  "bio": "Vazio",
+  "nome": "Joao Neves",
+  "email": "Joaoneves@jn.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "Jornal de Noticias",
+  "searchTags": "Joao Neves Jornal de Noticias jornalista",
+  "__v": 0
+},{
+  "_id": "639744fa-f30d-462a-9071-3009db9b1d38",
+  "tipo": "user",
+  "bio": "Vazio",
+  "nome": "Vasco",
+  "email": "vascoc@ipvc.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "__v": 0
+},{
+  "_id": "86ffe712-e686-4045-946f-8fdcb62441f5",
+  "tipo": "politico",
+  "bio": "Vazio",
+  "nome": "Rui Rangel",
+  "email": "ruirangel@psd.pt",
+  "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "afiliacao": "PSD",
+  "searchTags": "Rui Rangel PSD politico",
+  "__v": 0
+}]

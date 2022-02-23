@@ -1,0 +1,96 @@
+[{
+  "_id": "4205aea8-55bd-4d60-a0b6-d321173ed04b",
+  "numeroVotos": 0,
+  "votos": [],
+  "author_id": "38113a32-a6be-4226-9d45-f76ccaeca337",
+  "author_nome": "joao",
+  "titulo": "teste2",
+  "descricao": "ewsxdrcftugvehjbreagfitvyubhsiljndrgeuyohibavfsnjdoregyfuibhvsjkaldnl",
+  "empresa": "teste21",
+  "envolvidos": [
+    {
+      "_id": "db28e8f8-e239-4f43-98d8-5832fe7b3f9c",
+      "nome": "Antonio Costa",
+      "afiliacao": "PSD"
+    }
+  ],
+  "searchTags": "teste2 teste21 ewsxdrcftugvehjbreagfitvyubhsiljndrgeuyohibavfsnjdoregyfuibhvsjkaldnl",
+  "__v": 0
+},{
+  "_id": "32856244-c22a-47a6-9735-2274fedb65ef",
+  "numeroVotos": 0,
+  "votos": [],
+  "author_id": "38113a32-a6be-4226-9d45-f76ccaeca337",
+  "author_nome": "joao",
+  "titulo": "teste 3",
+  "descricao": "fgtchvjbkunm",
+  "empresa": "cfgvhbnjkm",
+  "envolvidos": [
+    {
+      "_id": "8b583bb0-0f23-4568-acda-e08542341e97",
+      "nome": "Rui Rio",
+      "afiliacao": "PSD"
+    }
+  ],
+  "searchTags": "teste 3 cfgvhbnjkm fgtchvjbkunm",
+  "__v": 0
+},{
+  "_id": "c940b3e7-0016-40fc-bc8b-3820761e6fc7",
+  "numeroVotos": 0,
+  "votos": [],
+  "author_id": "38113a32-a6be-4226-9d45-f76ccaeca337",
+  "author_nome": "joao",
+  "titulo": "rui rio",
+  "descricao": "rui rio rui ria",
+  "empresa": "Galp",
+  "envolvidos": [
+    {
+      "_id": "8b583bb0-0f23-4568-acda-e08542341e97",
+      "nome": "Rui Rio",
+      "afiliacao": "PSD"
+    }
+  ],
+  "searchTags": "rui rio Galp rui rio rui ria",
+  "__v": 0
+},{
+  "_id": "1579a8bf-54d2-4600-beca-f2b2c2c7c44d",
+  "numeroVotos": 0,
+  "votos": [],
+  "author_id": "38113a32-a6be-4226-9d45-f76ccaeca337",
+  "author_nome": "joao",
+  "titulo": "Interacao teste",
+  "descricao": "teste",
+  "empresa": "Teste",
+  "envolvidos": [
+    {
+      "_id": "8b583bb0-0f23-4568-acda-e08542341e97",
+      "nome": "Rui Rio",
+      "afiliacao": "PSD"
+    },
+    {
+      "_id": "22acb59d-133c-438c-9132-8586d2927f52",
+      "nome": "Antonio Costa",
+      "afiliacao": "PS"
+    }
+  ],
+  "searchTags": "Interacao teste Teste teste",
+  "__v": 0
+},{
+  "_id": "e7452dd8-f275-4ba9-a57d-033a793f1aff",
+  "numeroVotos": 0,
+  "votos": [],
+  "author_id": "93c51fcd-1945-4718-80e1-34327add0807",
+  "author_nome": "Joao Neves",
+  "titulo": "Interacao teste suborno",
+  "descricao": "Foi feito um suborno",
+  "empresa": "Galp",
+  "envolvidos": [
+    {
+      "_id": "1f89351c-97c9-45e3-b811-b7be9f2af1f1",
+      "nome": "Catarina Martins",
+      "afiliacao": "BE"
+    }
+  ],
+  "searchTags": "Interacao teste suborno Galp Foi feito um suborno",
+  "__v": 0
+}]
