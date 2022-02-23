@@ -20,11 +20,15 @@ router.get('/list', async (req, res) => {
     res.json(res.post)
   })
 
-  router.get('/list/author_id/:titulo', getPostByAuthorId, (req, res) => {
+  router.get('/list/author_id/:id', getPostByAuthorId, (req, res) => {
     res.json(res.post)
   })
 
   router.get('/:id', getPost, (req, res) => {
+    res.send(res.post)
+  })
+
+  router.get('/envolvido/:id', getEnvolvido, (req, res) => {
     res.send(res.post)
   })
 
@@ -45,6 +49,7 @@ router.get('/list', async (req, res) => {
       titulo: req.body.titulo,
       descricao: req.body.descricao,
       empresa: req.body.empresa,
+      envolvidos: req.body.envolvidos,
       searchTags: ''+req.body.titulo+' '+req.body.empresa+' '+req.body.descricao
     });
     try {
@@ -54,6 +59,22 @@ router.get('/list', async (req, res) => {
       res.status(400).json({ message: err.message });
     }
   })
+
+  async function getEnvolvido(req, res, next) {
+    let post
+    try {
+        //post = await Post.find({},{envolvidos :{$elemMatch: {_id:req.params.id}}})
+        post = await Post.find({"envolvidos._id" : req.params.id})
+      if (post == null) {
+        return res.status(404).json({ message: 'Cannot find Post' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.post = post
+    next()
+  }
 
   async function getPost(req, res, next) {
     let post
@@ -73,7 +94,7 @@ router.get('/list', async (req, res) => {
   async function getPostByAuthorId(req, res, next) {
     let post
     try {
-      post = await Post.find({author_id: req.params.author_id}).exec();
+      post = await Post.find({author_id: req.params.id}).exec();
       if (post == null) {
         return res.status(404).json({ message: 'Cannot find Post' })
       }
